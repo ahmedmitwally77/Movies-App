@@ -1,5 +1,5 @@
 {
-  "name": "shadcn",
+  "name": "movieapp",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -22,12 +22,12 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.417.0",
+    "movieapp": "file:",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.5",
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.26.2",
-    "shadcn": "file:",
     "swiper": "^11.1.14",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7"

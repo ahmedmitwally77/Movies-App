@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react/no-unescaped-entities */
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -9,21 +10,18 @@ import cover2 from "../../assets/cover2.png";
 import "./style.css";
 import useIsMobile from "@/hooks/useIsMobile";
 import axios from "@/api/axios";
-import { IMAGE_BASE_URL } from "@/constants/constants";
-import { Link, useNavigation } from "react-router-dom";
+import MovieBox from "@/components/MovieBox/MovieBox";
 
 const Home = () => {
   const { isMobile } = useIsMobile();
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [nowPlaying, setNowPlaying] = useState([]);
   const [topRated, setTopRated] = useState([]);
-  const nav = useNavigation();
 
   const getTrendingMovies = () => {
     axios
       .get(`/trending/movie/day`)
       .then((res) => {
-        console.log(res.data.results);
         setTrendingMovies(res.data.results);
       })
       .catch((err) => {
@@ -35,7 +33,6 @@ const Home = () => {
     axios
       .get(`/movie/now_playing`)
       .then((res) => {
-        console.log("now_playing", res.data.results);
         setNowPlaying(res.data.results);
       })
       .catch((err) => {
@@ -47,7 +44,6 @@ const Home = () => {
     axios
       .get(`/movie/top_rated`)
       .then((res) => {
-        console.log("top_rated", res.data.results);
         setTopRated(res.data.results);
       })
       .catch((err) => {
@@ -55,9 +51,7 @@ const Home = () => {
       });
   };
 
-  const navToFilmDetails = (id) => {
-    nav(`FilmDetails/${id}`);
-  };
+
 
   useEffect(() => {
     getTrendingMovies();
@@ -66,14 +60,14 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="bg-[#44406F] pt-20">
+    <div className="pt-20">
       {/* start swiper */}
       <div>
         <Swiper
           pagination={true}
           navigation={true}
           modules={[Pagination, Navigation]}
-          className="w-[90%] md:h-[400px] rounded-md"
+          className="lg:w-[90%] w-[100%] md:h-[200px] lg:h-[400px] rounded-md"
         >
           {isMobile ? (
             <>
@@ -91,6 +85,7 @@ const Home = () => {
                   className="md:object-cover"
                 />
               </SwiperSlide>
+              
             </>
           ) : (
             <>
@@ -162,43 +157,17 @@ const Home = () => {
       {/* start Trending */}
       <div className="container">
         <div className="mt-20">
-          <h2 className="text-white font-thin text-[40px] mb-5">
+          <h2 className="text-white font-bold text-[40px] mb-5 flex items-center gap-3">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-10">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 0 1-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0 1 18 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0 1 18 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 0 1 6 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M19.125 12h1.5m0 0c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h1.5m14.25 0h1.5" />
+          </svg>
+            </span>
             Trending Movies
           </h2>
-          <div className="flex flex-wrap justify-between pb-20 mt-5 gap-2">
-            {trendingMovies.slice(0, 10).map((movie, idx) => (
-              <div
-                className="group w-full md:w-1/6 mb-8 cursor-pointer"
-                key={idx}
-              >
-                <Link to={`/FilmDetails/movie/${movie.id}`}>
-                  <div className="relative">
-                    <img
-                      // src={film}
-                      src={`${IMAGE_BASE_URL}${movie.poster_path}`}
-                      alt="Film"
-                      className="w-full rounded-md"
-                    />
-                  </div>
-                  <h6 className="text-white text-[18px] font-semibold mt-1 mb-1">
-                    {movie.title}
-                  </h6>
-                  <div className="flex flex-row justify-between items-center">
-                    <span className="text-white">
-                      {movie.release_date.split("-")[0]}{" "}
-                      {movie.vote_average == 0 ? null : (
-                        <>
-                          - {movie.vote_average.toFixed(1)}
-                          <i className="fa-solid fa-star text-[#FFD600] ms-1"></i>
-                        </>
-                      )}
-                    </span>
-                    <span className="text-white border-2 px-1 rounded-sm">
-                      {movie.media_type}
-                    </span>
-                  </div>
-                </Link>
-              </div>
+          <div className="flex flex-wrap justify-center pb-20 mt-5">
+            {trendingMovies.slice(0, 15).map((movie, idx) => (
+              <MovieBox movie={movie} idx={idx} key={idx} />
             ))}
           </div>
         </div>
@@ -208,39 +177,18 @@ const Home = () => {
       {/* start Now */}
       <div className="container">
         <div className="mt-10">
-          <h2 className="text-white font-thin text-[40px] mb-5">Now Playing</h2>
-          <div className="flex flex-wrap justify-between pb-20 mt-5 gap-2">
-            {nowPlaying.slice(0, 10).map((movie, idx) => (
-              <div
-                className="group w-full md:w-1/6 mb-8 cursor-pointer"
-                key={idx}
-              >
-                <Link to={`/FilmDetails/movie/${movie.id}`}>
-                  <div className="relative">
-                    <img
-                      // src={film}
-                      src={`${IMAGE_BASE_URL}${movie.poster_path}`}
-                      alt="Film"
-                      className="w-full rounded-md"
-                    />
-                  </div>
-                  <h6 className="text-white text-[18px] font-semibold mt-1 mb-1">
-                    {movie.title}
-                  </h6>
-                  <div className="flex flex-row justify-between items-center">
-                    <span className="text-white">
-                      {movie.release_date.split("-")[0]}{" "}
-                      {movie.vote_average == 0 ? null : (
-                        <>
-                          - {movie.vote_average.toFixed(1)}
-                          <i className="fa-solid fa-star text-[#FFD600] ms-1"></i>
-                        </>
-                      )}
-                    </span>
-                    {/* <span className='text-white border-2 px-1 rounded-sm'>{movie.media_type}</span> */}
-                  </div>
-                </Link>
-              </div>
+          <h2 className="text-white font-bold text-[40px] mb-5 flex items-center gap-3">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-10">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 0 1-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0 1 18 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0 1 18 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 0 1 6 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M19.125 12h1.5m0 0c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h1.5m14.25 0h1.5" />
+          </svg>
+            </span>
+            Now Playing
+          </h2>
+
+          <div className="flex flex-wrap justify-center pb-20 mt-5 ">
+            {nowPlaying.slice(0, 15).map((movie, idx) => (
+              <MovieBox key={idx} movie={movie} />
             ))}
           </div>
         </div>
@@ -250,39 +198,17 @@ const Home = () => {
       {/* start Top */}
       <div className="container">
         <div className="mt-10">
-          <h2 className="text-white font-thin text-[40px] mb-5">Top Rated</h2>
-          <div className="flex flex-wrap justify-between pb-20 mt-5 gap-2">
-            {topRated.slice(0, 10).map((movie, idx) => (
-              <div
-                className="group w-full md:w-1/6 mb-8 cursor-pointer"
-                key={idx}
-              >
-                <Link to={`/FilmDetails/movie/${movie.id}`}>
-                  <div className="relative">
-                    <img
-                      // src={film}
-                      src={`${IMAGE_BASE_URL}${movie.poster_path}`}
-                      alt="Film"
-                      className="w-full rounded-md"
-                    />
-                  </div>
-                  <h6 className="text-white text-[18px] font-semibold mt-1 mb-1">
-                    {movie.title}
-                  </h6>
-                  <div className="flex flex-row justify-between items-center">
-                    <span className="text-white">
-                      {movie.release_date.split("-")[0]}{" "}
-                      {movie.vote_average == 0 ? null : (
-                        <>
-                          - {movie.vote_average.toFixed(1)}
-                          <i className="fa-solid fa-star text-[#FFD600] ms-1"></i>
-                        </>
-                      )}
-                    </span>
-                    {/* <span className='text-white border-2 px-1 rounded-sm'>{movie.media_type}</span> */}
-                  </div>
-                </Link>
-              </div>
+          <h2 className="text-white font-bold text-[40px] mb-5 flex items-center gap-3">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-10">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 0 1-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0 1 18 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0 1 18 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 0 1 6 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M19.125 12h1.5m0 0c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h1.5m14.25 0h1.5" />
+          </svg>
+            </span>
+            Top Rated
+          </h2>
+          <div className="flex flex-wrap justify-center pb-20 mt-5">
+            {topRated.slice(0, 15).map((movie, idx) => (
+              <MovieBox key={idx} movie={movie} idx={idx} />
             ))}
           </div>
         </div>
