@@ -1,0 +1,71 @@
+.Card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding-bottom: 10px;
+}
+.Card .posterHolder {
+  min-height: 275px;
+  max-height: 275px;
+  cursor: pointer;
+  position: relative;
+}
+.Card .posterHolder img {
+  width: 100%;
+  height: 100%;
+}
+.Card .posterHolder::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.2s;
+  transition-property: background-color;
+}
+.Card .posterHolder:hover::after {
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: 0.2s;
+}
+.Card a {
+  color: #fff;
+  text-decoration: none;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-wrap: nowrap;
+  max-width: 100%;
+}
+.Card a:hover {
+  color: #a79fff;
+}
+.Card .posterInformation {
+  display: flex;
+  justify-content: space-between;
+}
+.Card .posterInformation .left span:nth-child(1), .Card .posterInformation .left span:nth-child(3) {
+  font-size: 0.9em;
+  line-height: 1em;
+  padding: 2px 4px;
+  color: #fff;
+}
+.Card .posterInformation .left .dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ccc;
+  display: inline-block;
+  margin: 3px 5px;
+}
+.Card .posterInformation .right span {
+  font-size: 0.9em;
+  line-height: 1em;
+  padding: 2px 4px;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  color: #eee;
+  text-transform: capitalize;
+}/*# sourceMappingURL=Card.css.map */

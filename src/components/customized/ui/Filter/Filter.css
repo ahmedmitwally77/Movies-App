@@ -1,0 +1,128 @@
+.FilterContainer {
+  padding-top: 10px;
+  width: 95%;
+  margin: auto;
+}
+.FilterContainer .SearchButton {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.FilterContainer .SearchButton button {
+  background-color: #a79fff;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+.FilterContainer .SearchButton input {
+  height: 38px;
+  color: #fff;
+  padding-left: 40px;
+  padding-left: 10px;
+  font-size: 14px;
+  font-weight: 300;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  border: none;
+  box-shadow: none !important;
+  width: 200px;
+}
+.FilterContainer .targetKeywords {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.FilterContainer .targetKeywords button {
+  background-color: #eee;
+  color: #353637;
+  padding: 10px;
+  border-radius: 5px;
+}
+.FilterContainer .targetKeywords button.active {
+  background-color: #a79fff;
+  color: #fff;
+}
+
+.filter-show {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.filter-show button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #212529;
+  background-color: #eee;
+  padding: 2px 10px;
+  border-radius: 5px;
+}
+.filter-show button img {
+  width: 12px;
+  height: 12px;
+}
+.filter-show h1 {
+  font-size: 30px !important;
+  line-height: 1.3em;
+  font-weight: 300;
+  padding: 0;
+  margin: 0;
+  color: #eee;
+  text-transform: capitalize;
+}
+
+.Filter {
+  display: none;
+  border: 1px black;
+  border: 1px dashed #353637;
+  padding: 20px;
+  background-color: black;
+  color: #eee;
+}
+.Filter .TypeFilter {
+  display: flex;
+  border-bottom: 1px solid #353637;
+  padding: 0 0 15px;
+  margin-bottom: 15px;
+}
+.Filter .TypeFilter p {
+  font-size: 16px;
+  font-weight: 500;
+  min-width: 80px;
+}
+.Filter .TypeFilter .TypeSelection {
+  display: flex;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  width: 100%;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+.Filter .TypeFilter .TypeSelection .singleElement {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.Filter .FilterFunctions {
+  display: flex;
+  gap: 10px;
+}
+.Filter .FilterFunctions button {
+  background-color: red;
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  border-radius: 30px;
+  gap: 5px;
+  color: black;
+}
+.Filter .FilterFunctions button img {
+  width: 20px;
+  height: 17px;
+}
+.Filter .FilterFunctions button:nth-child(1) {
+  background-color: #a79fff;
+}
+.Filter .FilterFunctions button:nth-child(2) {
+  background-color: #eee;
+}/*# sourceMappingURL=Filter.css.map */

@@ -1,0 +1,235 @@
+body {
+  font-family: "Roboto", sans-serif;
+  color: #eee !important;
+  font-size: 14px;
+  line-height: 1.2em;
+  font-weight: 400;
+}
+
+a {
+  color: #fff !important;
+  text-decoration: none !important;
+  outline: 0;
+  -moz-outline: none;
+  transition: all 0.3s !important;
+}
+a:hover {
+  color: rgba(200, 137, 205, 0.9803921569) !important;
+}
+
+.page .container {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 100%;
+  height: 100%;
+}
+.page .container .card {
+  position: relative;
+  background-color: #44406f;
+  color: #fff;
+  border: none;
+  transition: transform 0.3s;
+  z-index: 1;
+}
+.page .container .card:hover {
+  transform: scale(1.05);
+}
+.page .container .card .block-rating .rating-result {
+  margin-bottom: 15px;
+}
+.page .container .card .block-rating .rating-result .rr-mark {
+  margin-bottom: 5px;
+  font-family: Arial;
+  font-size: 12px;
+  color: #ccc;
+}
+.page .container .card .block-rating .rating-result .rr-mark span {
+  font-weight: 600;
+  font-size: 16px;
+  margin-right: 5px;
+  color: #fff;
+}
+.page .container .card .block-rating .rating-result .progress {
+  height: 3px;
+  background: #333;
+}
+.page .container .card .block-rating .rating-result .progress .bg-success {
+  background: #1dd05d !important;
+}
+.page .container .heading-name {
+  font-size: 2.5em;
+  line-height: 1.3em;
+  margin: 0 0 15px;
+  color: #fff;
+  font-weight: 300;
+}
+.page .container .button-85 {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  -moz-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: all 0.3s;
+}
+.page .container .button-85:hover {
+  color: rgb(7, 255, 7);
+  transform: scale(1.1);
+}
+.page .container .button-85:before {
+  content: "";
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+.page .container .button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+#vote-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#vote-loading .loading-relative {
+  position: relative;
+}
+#vote-loading .loading-relative .loading {
+  display: flex;
+  justify-content: center;
+}
+#vote-loading .loading-relative .loading div {
+  width: 8px;
+  height: 8px;
+  margin: 0 4px;
+  background: #fff;
+  border-radius: 50%;
+  animation: loading 0.6s infinite alternate;
+}
+#vote-loading .loading-relative .loading .span1 {
+  animation-delay: 0s;
+}
+#vote-loading .loading-relative .loading .span2 {
+  animation-delay: 0.2s;
+}
+#vote-loading .loading-relative .loading .span3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes loading {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+}
+.add-to-favoret-main {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+}
+
+.add-to-favoret-btn {
+  background-color: #fff;
+  padding: 0.8em 1.5em;
+  border-radius: 20em;
+  border: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 100ms linear, scale 0.5;
+  position: relative;
+  box-shadow: inset 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.add-to-favoret-main:hover .add-to-favoret-btn {
+  transform: scale(1.1);
+}
+
+.add-to-favoret-btn:active {
+  box-shadow: inset 0 0 0 4px rgba(4, 59, 63, 0.4196078431);
+}
+
+.add-to-favoret-btn::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  position: absolute;
+  border-radius: inherit;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  transition: all 500ms ease-in-out;
+  opacity: 0;
+  animation: flash 100ms ease-in-out;
+  transform: scaleX(2) scaleY(2);
+}
+
+.add-to-favoret-btn:hover::before {
+  opacity: 1;
+  transform: scaleX(1) scaleY(1);
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+    transform: translate(45px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0);
+  }
+}
+.loading {
+  display: none;
+  background-color: #44406f;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+}
+.loading img {
+  width: 150px;
+  height: 150px;
+}/*# sourceMappingURL=filmdetals.css.map */

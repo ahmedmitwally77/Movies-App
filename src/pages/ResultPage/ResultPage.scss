@@ -1,0 +1,42 @@
+.ResultPage{
+    
+    background-color: #44406f;
+    min-height: 100vh;
+    .loading{
+        display: none;
+        justify-content: center;
+        height: 100vh;
+        align-items: center;
+        img{
+            width: 150px;
+            height: 150px;
+        }
+    }
+}
+
+.pageNumbers{
+    padding: 20px 0px;
+    ul{
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+    ul li{
+        padding: 0 10px;
+        line-height: 40px;
+        font-size: 16px;
+        border-radius: 20px;
+        min-width: 40px;
+        text-align: center;
+        color: white;
+    }
+    ul li.active{
+        background-color: #a79fff !important;
+        color: black !important;
+    }
+    ul li:hover{
+        background-color: black;
+        
+    }
+}

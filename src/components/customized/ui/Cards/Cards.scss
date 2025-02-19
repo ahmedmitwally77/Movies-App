@@ -1,0 +1,10 @@
+
+.Cards{
+    width: 95%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+    gap: 10px;
+    max-width: 1680px;
+
+}
