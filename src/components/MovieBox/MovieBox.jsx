@@ -30,7 +30,7 @@ export default function MovieBox({movie, idx}) {
                         </>
                       )}
                     </span>
-                    <span className="text-white border-2 p-1 rounded-md hover:bg-white hover:!text-primary">
+                    <span className="text-white border-2 p-1 rounded-md transition-all duration-500 hover:bg-white hover:!text-primary">
                       {media_type? media_type : "movie"}
                     </span>
                   </div>

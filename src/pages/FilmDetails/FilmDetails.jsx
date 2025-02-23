@@ -1,31 +1,33 @@
 import Card from "react-bootstrap/Card";
-import heroCardImg from "./imgs/cardImg.jpg";
-import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import "./css/filmdetals.css";
-import { ProgressBar } from "react-bootstrap";
 import axios from "@/api/axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IMAGE_BASE_URL } from "@/constants/constants";
 import toast from "react-hot-toast";
-import LoadingImg from "@/assets/images/Loading.gif";
+import { useEffect, useState } from "react";
+import { ProgressBar } from "react-bootstrap";
+import { PacmanLoader } from "react-spinners";
 
 function FilmDetails() {
   const [isLoading, setIsLoading] = useState(false);
   const [filmDetails, setFilmDetails] = useState(null);
   const [filmVideos, setFilmVideos] = useState([]);
   const { id, type } = useParams();
+  const nav = useNavigate();
+
+  
 
   const getFilmDetails = () => {
     axios
       .get(`/${type}/${id}`)
       .then((res) => {
         console.log(res.data);
-
         setFilmDetails(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
+        nav("/home");
       });
   };
 
@@ -33,11 +35,11 @@ function FilmDetails() {
     axios
       .get(`/movie/${id}/videos`)
       .then((res) => {
-        // console.log(res.data);
         setFilmVideos(res.data.results);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
+        nav("/home");
       });
   };
 
@@ -59,13 +61,11 @@ function FilmDetails() {
         body
       )
       .then((res) => {
-        console.log(res.data);
         toast.success("Added to favourites Successfully", {
           position: "top-center",
         });
       })
       .catch((err) => {
-        console.log(err);
         toast.error("Error Occured", { position: "top-center" });
       });
   };
@@ -96,7 +96,6 @@ function FilmDetails() {
     filmDetails && filmDetails.backdrop_path
   }`;
   const s1 = () => {
-    console.log(filmDetails);
     return filmDetails == null
       ? { display: "none" }
       : {
@@ -107,6 +106,8 @@ function FilmDetails() {
           backgroundImage: `url(${backgroundImageUrl})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          overflow: "hidden",
+          borderRadius: "20px",
         };
   };
   const s2 = () => {
@@ -124,6 +125,7 @@ function FilmDetails() {
             height: "100%",
             backgroundColor: "rgba(0, 0, 0, 0.5)", // Adjust opacity/color as needed
             zIndex: 1,
+            borderRadius: "20px",
           }}
         ></div>
         <div className="container">
@@ -138,12 +140,12 @@ function FilmDetails() {
                 />
                 <Card.Body>
                   <div id="block-rating" className="block-rating p-3">
-                    {/* <div className="rating-result mb-3">
+                    <div className="rating-result mb-3">
                     <div className="rr-mark">
                       <span>9.4</span>/ 106 voted
                     </div>
                     <ProgressBar now={94.34} className="mb-2" />
-                  </div> */}
+                  </div>
 
                     <div className="add-to-favoret-main text-center  py-3">
                       <Button
@@ -154,12 +156,7 @@ function FilmDetails() {
                         <i className="fa-regular fa-heart mt-2"></i> Add To
                         Favorite
                       </Button>
-                      {/* <Button
-                      onClick={() => dislike(111016)}
-                      className="btn-secondary btn-sm"
-                    >
-                      <i className="fa fa-thumbs-down mr-2"></i> Dislike
-                    </Button> */}
+                      
                     </div>
 
                     {isLoading && (
@@ -195,18 +192,18 @@ function FilmDetails() {
                     <i className="fa fa-play mr-2"></i>Watch trailer
                   </Button>
                 </a>
-                <h2 className="heading-name">
+                <h2 className="md:text-6xl text-4xl  font-bold">
                   <a href="#">{filmDetails && filmDetails.original_title}</a>
                 </h2>
-                <div className="mb-2 lh-base">
+                <div className="mb-2 lh-base w-3/4 text-gray-400">
                   {filmDetails && filmDetails.overview}
                 </div>
-                <div className="elements">
+                <div className="elements border-t-2 pt-4 ">
                   <div className="row">
                     <div className="col-xl-5 col-lg-6 col-md-8 col-sm-12">
                       <div className="row-line">
                         <span className="type">
-                          <strong>Released: </strong>
+                          <strong className="text-lg">Released: </strong>
                         </span>
                         {filmDetails &&
                           (filmDetails.release_date ||
@@ -214,11 +211,11 @@ function FilmDetails() {
                       </div>
                       <div className="row-line">
                         <span className="type">
-                          <strong>Genre: </strong>
+                          <strong className="text-lg">Genre: </strong>
                         </span>
                         {filmDetails?.genres?.map((gen, idx) => (
                           <span key={idx}>
-                            <a href="#" title={gen.name}>
+                            <a href="#" className="px-1" title={gen.name}>
                               {gen.name}
                             </a>
                             {idx < filmDetails &&
@@ -231,7 +228,7 @@ function FilmDetails() {
                     <div className="col-xl-6 col-lg-6 col-md-4 col-sm-12">
                       <div className="row-line">
                         <span className="type">
-                          <strong>Country: </strong>
+                          <strong className="text-lg">Country: </strong>
                         </span>
                         <a href="/country/us" title="United States of America">
                           {filmDetails?.origin_country?.[0]}
@@ -239,11 +236,11 @@ function FilmDetails() {
                       </div>
                       <div className="row-line">
                         <span className="type">
-                          <strong>Production: </strong>
+                          <strong className="text-lg">Production: </strong>
                         </span>
                         {filmDetails?.production_companies?.map(
                           (company, idx) => (
-                            <a key={idx} href="#" title={company?.name}>
+                            <a key={idx} className="px-1" href="#" title={company?.name}>
                               {company?.name}
                             </a>
                           )
@@ -259,7 +256,7 @@ function FilmDetails() {
         </div>
       </div>
       <div className="loading" style={s2()}>
-        <img src={LoadingImg} />
+        <PacmanLoader color="#44406f" size={45} />
       </div>
     </>
   );
