@@ -1,20 +1,25 @@
 .ActorDetails {
   width: 100%;
   height: 100vh;
+  border-radius: 10px;
+
 }
 .ActorDetails .BackGroundImage {
   width: 100%;
-  height: 130%;
+  height: 100%;
   position: relative;
   z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
 }
 .ActorDetails .BackGroundImage > img {
-  width: 100%;
+  width: 60%;
   height: 100vh;
-  position: absolute;
   top: 0;
   left: 0;
-}
+  }
 .ActorDetails .BackGroundImage:before {
   content: "";
   position: absolute;
@@ -100,12 +105,6 @@
   display: flex;
   justify-content: center;
   padding-bottom: 10px;
-}
-.ActorDetails .button button {
-  background-color: #eee;
-  color: #353637;
-  padding: 10px;
-  border-radius: 5px;
 }
 
 @media (max-width: 1200px) {

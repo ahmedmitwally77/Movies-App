@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-
 import "./ResultPage.css";
 import Search from "@/components/customized/Controller/Search/Search";
 import Filter from "@/components/customized/ui/Filter/Filter";
 import LoadingImg from "@/assets/images/Loading.gif";
 import { useEffect, useRef, useState } from "react";
 function ResultPage() {
-  const location = useLocation();
+  const location = useLocation();  
   const queryParams = new URLSearchParams(location.search); // Access query string
+  
   const params = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(
@@ -155,6 +156,7 @@ function ResultPage() {
     return pages;
   };
   const d = useRef(<Search filter={getFilter()} set={setTotalPages} />);
+
   useEffect(() => {
     if (loading === `${location.pathname}?${queryParams.toString()}`) {
       return;
@@ -166,6 +168,7 @@ function ResultPage() {
     <div className="ResultPage">
       <div className="page">
         <Filter />
+        
         <div className="pageNumbers">
           <ul>{showPages()}</ul>
         </div>

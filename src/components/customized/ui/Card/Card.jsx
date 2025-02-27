@@ -17,8 +17,8 @@ export default function Card({ all, imageSource, title, first, second, type }) {
   };
   return (
     <div className="Card" onClick={onclick}>
-      <div className="posterHolder">
-        <img src={imageSource} alt="" />
+      <div className="posterHolder overflow-hidden">
+        <img src={imageSource} alt={title} className=" " />
       </div>
       <a href="">{title}</a>
       <div className="posterInformation">

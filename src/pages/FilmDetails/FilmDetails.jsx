@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import "./css/filmdetals.css";
@@ -123,7 +125,7 @@ function FilmDetails() {
             left: 0,
             width: "100%",
             height: "100%",
-            backgroundColor: "rgba(0, 0, 0, 0.5)", // Adjust opacity/color as needed
+            backgroundColor: "rgba(0, 0, 0, 0.7)", // Adjust opacity/color as needed
             zIndex: 1,
             borderRadius: "20px",
           }}
@@ -255,9 +257,7 @@ function FilmDetails() {
           </div>
         </div>
       </div>
-      <div className="loading" style={s2()}>
-        <PacmanLoader color="#44406f" size={45} />
-      </div>
+      
     </>
   );
 }
