@@ -9,8 +9,8 @@ export default function Footerme() {
           <div>
             <Footer.Brand
               src="/public/images/favicon.png"
-              alt="Flowbite Logo"
-              name="Flowbite"
+              alt="movie app Logo"
+              name="movie app"
               className="w-20 h-20 object-contain sm:mb-0 sm:mr-8 mb-8 "
             />
           </div>
